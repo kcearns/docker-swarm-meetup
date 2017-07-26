@@ -6,15 +6,15 @@
 
 > Update the Vagrant file where it says REPLACE_WITH_TOKEN with the token provided.
 
-* Type *vagrant up*
-* Type *vagrant ssh*
-* Type *cd /vagrant*
+* Type **vagrant up**
+* Type **vagrant ssh**
+* Type **cd /vagrant**
 
 ## Preparing nodes for Swarm
 
-* Type *make droplet NAME=[firstname][lastname]-node01 _ie. kevincearns-mgmt_
-* Type *make droplet NAME=[firstname][lastname]-node02
-* Type *make droplet NAME=[firstname][lastname]-node03
+* Type **make droplet NAME=[firstname][lastname]-node01** _ie. kevincearns-mgmt_
+* Type **make droplet NAME=[firstname][lastname]-node02**
+* Type **make droplet NAME=[firstname][lastname]-node03**
 
 Lets see what those commands did!
 ```
