@@ -169,3 +169,16 @@ Commercial support is available at
 ```
 
 You can also put the IP in your browser and get the more familiar "Welcome to Nginx"
+
+
+TODO:
+
+add some "end of steps extra work"
+
+* Remove a node and see what happens
+* add additional services
+* how would you stop a service (how would you restart it)
+* run the inspect command on the service
+* run the inspect comand on the node
+
+?? any more?
