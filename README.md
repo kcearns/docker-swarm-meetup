@@ -108,7 +108,7 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 Initializing Swarm creates your first node. Type **docker node ls** to learn more about your node.
 What's its MANAGER STATUS?
 
-We'll now add the other two nodes as workers. Replace YOUR_TOKEN and YOUR_IP with the output from the output of the init command.
+We'll now add the other two nodes as workers. Replace YOUR_TOKEN and YOUR_IP with the output from the init command.
 
 * Type **docker-machine ssh [firstname][lastname]-node02 "docker swarm join --token YOUR_TOKEN YOUR_IP:2377"**
 * Type **docker-machine ssh [firstname][lastname]-node03 "docker swarm join --token YOUR_TOKEN YOUR_IP:2377"**
