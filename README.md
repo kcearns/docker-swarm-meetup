@@ -90,7 +90,7 @@ We first need the IP of node01 to initialize the cluster as it will become a man
 
 We now need to change our environment to node01
 
-* Type **docker-machine env [firstname][lastname]-node01**
+* Type **eval $(docker-machine env [firstname][lastname]-node01)**
 
 We'll initialize Swarm with the following command:
 
