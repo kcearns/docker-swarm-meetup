@@ -86,7 +86,7 @@ If you want to get comfortable moving from node to node and back to Vagrant feel
 
 We first need the IP of node01 to initialize the cluster as it will become a manager server.
 
-* Type **docker-machine ip [firstname][lastname]-node01
+* Type **docker-machine ip [firstname][lastname]-node01**
 
 We now need to change our environment to node01
 
@@ -105,6 +105,23 @@ To add a worker to this swarm, run the following command:
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
-Initializing swarm creates your first node. Type **docker node ls** to learn more about your node.
-What is it's MANAGER STATUS?
+Initializing Swarm creates your first node. Type **docker node ls** to learn more about your node.
+What's its MANAGER STATUS?
+
+Lets add the other two nodes now as workers. Replace YOUR_TOKEN and YOUR_IP with the output from the output of the init command.
+
+* Type **docker-machine ssh [firstname][lastname]-node02 "docker swarm join --token YOUR_TOKEN YOUR_IP:2377"**
+* Type **docker-machine ssh [firstname][lastname]-node03 "docker swarm join --token YOUR_TOKEN YOUR_IP:2377"**
+
+```
+$ docker node ls
+ID                            HOSTNAME             STATUS              AVAILABILITY        MANAGER STATUS
+oitw4ompjab8ycb7i9vmv9hcn *   kevincearns-node01   Ready               Active              Leader
+w41dma3bfpo1ny6wcdbfiv675     kevincearns-node03   Ready               Active              
+y9gcw3iqmg12igrfu8ksuxa5n     kevincearns-node02   Ready               Active  
+```
+
+Your Swarm cluster is now ready to do something!
+
+## Creating and managing Swarm services
 
