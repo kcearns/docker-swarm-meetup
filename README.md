@@ -1,1 +1,1 @@
-# docker-swarm-meetup
+# Toronto July Docker Swarm Orchestration Meetup
