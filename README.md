@@ -92,7 +92,7 @@ We now need to change our environment to node01
 
 * Type **docker-machine env [firstname][lastname]-node01**
 
-Let's initialize Swarm with the following command:
+We'll initialize Swarm with the following command:
 
 * docker swarm init --advertise-addr $(docker-machine ip [fistname][lastname]-node01)
 
@@ -108,7 +108,7 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 Initializing Swarm creates your first node. Type **docker node ls** to learn more about your node.
 What's its MANAGER STATUS?
 
-Lets add the other two nodes now as workers. Replace YOUR_TOKEN and YOUR_IP with the output from the output of the init command.
+We'll now add the other two nodes as workers. Replace YOUR_TOKEN and YOUR_IP with the output from the output of the init command.
 
 * Type **docker-machine ssh [firstname][lastname]-node02 "docker swarm join --token YOUR_TOKEN YOUR_IP:2377"**
 * Type **docker-machine ssh [firstname][lastname]-node03 "docker swarm join --token YOUR_TOKEN YOUR_IP:2377"**
@@ -125,3 +125,47 @@ Your Swarm cluster is now ready to do something!
 
 ## Creating and managing Swarm services
 
+We will create an nginx service that runs on port 80 and set the number of desired replicas at 3. 
+
+* Type **docker-machine ssh [firstname][lastname]-node01 "docker service create --name nginx --replicas 3 --publish 80:80 nginx"**
+
+If you run the **docker service ls** command you should see the service info below:
+
+```
+$ docker-machine ssh kevincearns-node01 "docker service ls"
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+thzhheud4025        nginx               replicated          3/3                 nginx:latest        *:80->80/tcp
+```
+
+Lets try it out:
+
+```
+$ curl http://$(docker-machine ip [firstname][lastname]-node01)
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+```
+
+You can also put the IP in your browser and get the more familiar "Welcome to Nginx"
