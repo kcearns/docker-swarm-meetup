@@ -248,7 +248,8 @@ We'll remove the services now.
 Lets clean up our cluster and remove the nodes.
 
 * Type **docker-machine rm [username]-node01**
-* Type **docker-machine rm [username]-node01**
+* Type **docker-machine rm [username]-node02**
+* Type **docker-machine rm [username]-node03**
 * Type **docker-machine ls**
 
 ## References
