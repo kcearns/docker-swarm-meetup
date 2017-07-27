@@ -91,7 +91,7 @@ If you want to get comfortable moving from node to node and back to Vagrant feel
 
 ## Initialize the Swarm cluster
 
-> **Note:** We will switch from using the _eval_ command to using _docker-machine ssh_ to run our commands on the remote nodes during this section. Both methods are useful and interchangeable as demonstrated here but I find using docker-machine helpful in keeping me aware of which server I am running commands on.
+> **Note:** We will switch from using the _eval_ command to using _docker-machine ssh_ to run our commands on the remote nodes at some point during this section. Both methods are useful and interchangeable as demonstrated here but I find using docker-machine helpful in keeping me aware of which server I am running commands on.
 
 We first need the IP of node01 to initialize the cluster as it will become a manager server.
 
