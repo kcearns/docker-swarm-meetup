@@ -115,7 +115,7 @@ To add a worker to this swarm, run the following command:
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
 Initializing Swarm creates your first node. Type **docker node ls** to learn more about your node.
-What's its MANAGER STATUS?
+What's its MANAGER STATUS? Did you run the _docker node_ command in your Vagrant VM or on node01?
 
 We'll now add the other two nodes as workers. Replace YOUR_TOKEN and YOUR_IP with the output from the init command.
 
