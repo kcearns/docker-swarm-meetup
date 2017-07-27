@@ -39,6 +39,6 @@ Vagrant.configure(2) do |config|
   		chmod +x /usr/local/bin/docker-compose
   		curl -L https://github.com/docker/machine/releases/download/v0.12.1/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine
   		chmod +x /usr/local/bin/docker-machine
-  		echo "export DO_TOKEN=145160da2d0e9f49449c6e1498edf1f64803988d3abc4fc878b59e481848c887" >> /home/vagrant/.bashrc
+  		echo "export DO_TOKEN=REPLACE_WITH_TOKEN" >> /home/vagrant/.bashrc
   SHELL
 end
