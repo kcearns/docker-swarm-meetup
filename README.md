@@ -10,11 +10,10 @@
 
 ## Preparing Vagrant
 
-> Update the Vagrant file where it says REPLACE_WITH_TOKEN with the token provided.
-
-* Type **vagrant up**
-* Type **vagrant ssh**
-* Type **cd /vagrant**
+1. Update the Vagrant file where it says REPLACE_WITH_TOKEN with the token provided.
+2. Type ```vagrant up```
+3. Type ```vagrant ssh```
+4. Type ```cd /vagrant```
 
 ## Preparing nodes for Swarm
 
