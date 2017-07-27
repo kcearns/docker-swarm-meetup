@@ -2,7 +2,7 @@
 
 > **Note:** An installation of Vagrant is required for this tutorial. If you have not done so already please go to the [Vagrant downloads page](https://www.vagrantup.com/downloads.html) and install it. A token for Digital Ocean is also required and will be provided at the meetup.
 
- > Replace [username] with your Meetup.com username. 
+ > **Where you see [username] throughout the tutorial replace it with your Meetup.com username**
 
 ## Clone tutorial
 
