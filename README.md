@@ -132,7 +132,7 @@ y9gcw3iqmg12igrfu8ksuxa5n     kcearns-node02   Ready               Active
 
 Your Swarm cluster is now ready to do something!
 
-## Creating and managing Swarm services
+## Creating Swarm services
 
 We will create an nginx service that runs on port 80 and set the number of desired replicas at 3. 
 
@@ -178,6 +178,73 @@ Commercial support is available at
 ```
 
 You can also put the IP in your browser and get the more familiar "Welcome to Nginx"
+
+## Managing Swarm services
+
+Reset your environment back to your Vagrant VM.
+
+* Type **eval $(docker-machine env -u)
+
+We will run the _service inspect_ command on the _nginx_ service to view details.
+
+* Type **docker-machine ssh [username]-node01 "docker service inspect nginx --pretty"**
+
+We can easily scale our service now using the _service scale_ commmand.
+
+* Type **docker-machine ssh [username]-node01 "docker service scale nginx=1"**
+
+Inspect the _nginx_ service again and notice how the number of Replics is now 1.
+Try the curl commmand you used earlier. Change the node to node02 and node03.
+You'll notice that regardless of the node you hit the Nginx page is returned. This is because Swarm uses mesh routing.
+[UCP External L4 Load Balancing - Docker Routing Mesh](https://success.docker.com/Architecture/Docker_Reference_Architecture%3A_Designing_Scalable%2C_Portable_Docker_Container_Networks#routingmesh)
+
+Run the _service scale_ command again and lets get our replicas back to 3.
+
+Lets add another service.
+
+* Type **docker-machine ssh [username]-node01 "docker service create --name redis --replicas 3 redis:3.2.9"**
+
+```
+$ docker-machine ssh [username]-node01 "docker service ls"
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+7vd3hc3jcf89        redis               replicated          3/3                 redis:3.2.9         
+opq6mjhpd11p        nginx               replicated          3/3                 nginx:latest        *:80->80/tcp
+```
+
+Lets upgrade the _redis_ service.
+
+* Type **docker-machine ssh [kcearns]-node01 "docker service update --image redis:4.0.0 redis"**
+
+If you run the _service inspect_ inspect command during the update you can view the update status.
+
+```
+ID:		7vd3hc3jcf89xs32687suohd4
+Name:		redis
+Service Mode:	Replicated
+ Replicas:	3
+UpdateStatus:
+ State:		updating
+ Started:	3 seconds ago
+ Message:	update in progress
+Placement:
+UpdateConfig:
+ Parallelism:	1
+ On failure:	pause
+ Monitoring Period: 5s
+ Max failure ratio: 0
+ Update order:      stop-first
+RollbackConfig:
+ Parallelism:	1
+ On failure:	pause
+ Monitoring Period: 5s
+ Max failure ratio: 0
+ Rollback order:    stop-first
+ ```
+
+ We'll remove the services now.
+
+ * Type **docker-machine ssh [username]-node01 "docker service rm redis"**
+ * Type **docker-machine ssh [username]-node01 "docker service rm nginx"**
 
 
 TODO:
