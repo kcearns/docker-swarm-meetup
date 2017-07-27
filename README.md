@@ -120,6 +120,9 @@ What's its MANAGER STATUS? Did you run the _docker node_ command in your Vagrant
 
 1. Replace YOUR_SWARM_TOKEN with the output from the init command.
 1. Replace YOUR_IP with the output from the init command.
+
+#### Joining the swarm
+
 1. Type **docker-machine ssh [username]-node02 "docker swarm join --token YOUR_SWARM_TOKEN YOUR_IP:2377"**
 1. Type **docker-machine ssh [username]-node03 "docker swarm join --token YOUR_SWARM_TOKEN YOUR_IP:2377"**
 
