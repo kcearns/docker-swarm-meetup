@@ -110,17 +110,17 @@ Swarm initialized: current node (oitw4ompjab8ycb7i9vmv9hcn) is now a manager.
 
 To add a worker to this swarm, run the following command:
 
-    docker swarm join --token YOUR_TOKEN 104.131.184.6:2377
+    docker swarm join --token YOUR_SWARM_TOKEN 104.131.184.6:2377
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
 Initializing Swarm creates your first node. Type **docker node ls** to learn more about your node.
 What's its MANAGER STATUS? Did you run the _docker node_ command in your Vagrant VM or on node01?
 
-We'll now add the other two nodes as workers. Replace YOUR_TOKEN and YOUR_IP with the output from the init command.
+We'll now add the other two nodes as workers. Replace YOUR_SWARM_TOKEN and YOUR_IP with the output from the init command.
 
-* Type **docker-machine ssh [username]-node02 "docker swarm join --token YOUR_TOKEN YOUR_IP:2377"**
-* Type **docker-machine ssh [username]-node03 "docker swarm join --token YOUR_TOKEN YOUR_IP:2377"**
+* Type **docker-machine ssh [username]-node02 "docker swarm join --token YOUR_SWARM_TOKEN YOUR_IP:2377"**
+* Type **docker-machine ssh [username]-node03 "docker swarm join --token YOUR_SWARM_TOKEN YOUR_IP:2377"**
 
 ```
 $ docker node ls
