@@ -16,10 +16,11 @@
 4. Type ```cd /vagrant```
 
 ## Preparing nodes for Swarm
+#### On the vagrant box
 
-* Type **make droplet NAME=[username]-node01**
-* Type **make droplet NAME=[username]-node02**
-* Type **make droplet NAME=[username]-node03**
+1. Type ```make droplet NAME=[username]-node01```
+1. Type ```make droplet NAME=[username]-node02```
+1. Type ```make droplet NAME=[username]-node03```
 
 Let's see what those commands did!
 ```
