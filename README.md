@@ -10,17 +10,17 @@
 
 ## Preparing Vagrant
 
-> Update the Vagrant file where it says REPLACE_WITH_TOKEN with the token provided.
-
-* Type **vagrant up**
-* Type **vagrant ssh**
-* Type **cd /vagrant**
+1. Update the Vagrant file where it says REPLACE_WITH_TOKEN with the token provided.
+2. Type ```vagrant up```
+3. Type ```vagrant ssh```
+4. Type ```cd /vagrant```
 
 ## Preparing nodes for Swarm
+#### On the vagrant box
 
-* Type **make droplet NAME=[username]-node01**
-* Type **make droplet NAME=[username]-node02**
-* Type **make droplet NAME=[username]-node03**
+1. Type ```make droplet NAME=[username]-node01```
+1. Type ```make droplet NAME=[username]-node02```
+1. Type ```make droplet NAME=[username]-node03```
 
 Let's see what those commands did!
 ```
@@ -110,17 +110,21 @@ Swarm initialized: current node (oitw4ompjab8ycb7i9vmv9hcn) is now a manager.
 
 To add a worker to this swarm, run the following command:
 
-    docker swarm join --token YOUR_TOKEN 104.131.184.6:2377
+    docker swarm join --token YOUR_SWARM_TOKEN 104.131.184.6:2377
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
 Initializing Swarm creates your first node. Type **docker node ls** to learn more about your node.
+
 What's its MANAGER STATUS? Did you run the _docker node_ command in your Vagrant VM or on node01?
 
-We'll now add the other two nodes as workers. Replace YOUR_TOKEN and YOUR_IP with the output from the init command.
 
-* Type **docker-machine ssh [username]-node02 "docker swarm join --token YOUR_TOKEN YOUR_IP:2377"**
-* Type **docker-machine ssh [username]-node03 "docker swarm join --token YOUR_TOKEN YOUR_IP:2377"**
+#### Joining the swarm
+
+1. Replace YOUR_SWARM_TOKEN with the output from the init command.
+1. Replace YOUR_IP with the output from the init command.
+1. Type **docker-machine ssh [username]-node02 "docker swarm join --token YOUR_SWARM_TOKEN YOUR_IP:2377"**
+1. Type **docker-machine ssh [username]-node03 "docker swarm join --token YOUR_SWARM_TOKEN YOUR_IP:2377"**
 
 ```
 $ docker node ls
