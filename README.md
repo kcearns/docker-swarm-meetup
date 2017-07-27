@@ -16,7 +16,7 @@
 
 ## Preparing nodes for Swarm
 
-* Type **make droplet NAME=[username]-node01** _ie. kcearns-mgmt_
+* Type **make droplet NAME=[username]-node01**
 * Type **make droplet NAME=[username]-node02**
 * Type **make droplet NAME=[username]-node03**
 
