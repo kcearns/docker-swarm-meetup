@@ -45,7 +45,7 @@ export DOCKER_MACHINE_NAME="kcearns-node01"
 # eval $(docker-machine env kcearns-node01)
 ```
 
-Next, run the _eval_ command output by the docker-machine. All _docker_ commands are executing on node01 now. 
+Next, run the _eval_ command output by docker-machine. All _docker_ commands are executing on node01 now. 
 
 Try this:
 ```
@@ -86,11 +86,12 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 ```
 
 The **-u** in the last command resets your environment back to your Vagrant VM.
+When you ran _docker images_ the first time you were on node01, after resetting your environment you were back on your Vagrant VM. Because you ran _docker run hello-world_ on node01 the image isn't local.
 If you want to get comfortable moving from node to node and back to Vagrant feel free to take some time now.
 
 ## Initialize the Swarm cluster
 
-> **Note:** We will switch from using the _eval_ command to using _docker-machine ssh_ to run our commands on the remote nodes.
+> **Note:** We will switch from using the _eval_ command to using _docker-machine ssh_ to run our commands on the remote nodes during this section. Both methods work and can be useful in different circumstances but I find using docker-machine helpful in keeping me aware of which server I am running commands on.
 
 We first need the IP of node01 to initialize the cluster as it will become a manager server.
 
