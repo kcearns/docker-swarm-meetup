@@ -183,7 +183,7 @@ You can also put the IP in your browser and get the more familiar "Welcome to Ng
 
 Reset your environment back to your Vagrant VM.
 
-* Type **eval $(docker-machine env -u)
+* Type **eval $(docker-machine env -u)**
 
 We will run the _service inspect_ command on the _nginx_ service to view details.
 
