@@ -213,9 +213,9 @@ opq6mjhpd11p        nginx               replicated          3/3                 
 
 Lets upgrade the _redis_ service.
 
-* Type **docker-machine ssh [kcearns]-node01 "docker service update --image redis:4.0.0 redis"**
+* Type **docker-machine ssh [username]-node01 "docker service update --image redis:4.0.0 redis"**
 
-If you run the _service inspect_ inspect command during the update you can view the update status.
+If you run the _service inspect_ command during the update you can view the update status.
 
 ```
 ID:		7vd3hc3jcf89xs32687suohd4
@@ -240,21 +240,22 @@ RollbackConfig:
  Max failure ratio: 0
  Rollback order:    stop-first
  ```
+We'll remove the services now.
 
- We'll remove the services now.
+* Type **docker-machine ssh [username]-node01 "docker service rm redis"**
+* Type **docker-machine ssh [username]-node01 "docker service rm nginx"**
 
- * Type **docker-machine ssh [username]-node01 "docker service rm redis"**
- * Type **docker-machine ssh [username]-node01 "docker service rm nginx"**
+Lets clean up our cluster and remove the nodes.
+
+* Type **docker-machine rm [username]-node01**
+* Type **docker-machine rm [username]-node01**
+* Type **docker-machine ls**
+
+## References
+
+* [Swarm mode overview](https://docs.docker.com/engine/swarm/)
+* [Swarm administration guide](https://docs.docker.com/engine/swarm/admin_guide/)
 
 
-TODO:
 
-add some "end of steps extra work"
 
-* Remove a node and see what happens
-* add additional services
-* how would you stop a service (how would you restart it)
-* run the inspect command on the service
-* run the inspect comand on the node
-
-?? any more?
