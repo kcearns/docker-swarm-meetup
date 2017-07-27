@@ -2,6 +2,10 @@
 
 > **Note:** An installation of Vagrant is required for this tutorial. If you have not done so already please go to the [Vagrant downloads page](https://www.vagrantup.com/downloads.html) and install it. A token for Digital Ocean is also required and will be provided at the meetup.
 
+## Clone tutorial
+
+**git clone https://github.com/kcearns/docker-swarm-meetup.git**
+
 ## Preparing Vagrant
 
 > Update the Vagrant file where it says REPLACE_WITH_TOKEN with the token provided.
@@ -12,31 +16,31 @@
 
 ## Preparing nodes for Swarm
 
-* Type **make droplet NAME=[firstname][lastname]-node01** _ie. kevincearns-mgmt_
-* Type **make droplet NAME=[firstname][lastname]-node02**
-* Type **make droplet NAME=[firstname][lastname]-node03**
+* Type **make droplet NAME=[username]-node01** _ie. kcearns-mgmt_
+* Type **make droplet NAME=[username]-node02**
+* Type **make droplet NAME=[username]-node03**
 
 Let's see what those commands did!
 ```
 $ docker-machine ls
 NAME                 ACTIVE   DRIVER         STATE     URL                        SWARM   DOCKER        ERRORS
-kevincearns-node01   -        digitalocean   Running   tcp://104.131.184.6:2376           v17.06.0-ce   
-kevincearns-node02   -        digitalocean   Running   tcp://45.55.48.217:2376            v17.06.0-ce   
-kevincearns-node03   -        digitalocean   Running   tcp://104.131.31.20:2376           v17.06.0-ce   
+kcearns-node01   -        digitalocean   Running   tcp://104.131.184.6:2376           v17.06.0-ce   
+kcearns-node02   -        digitalocean   Running   tcp://45.55.48.217:2376            v17.06.0-ce   
+kcearns-node03   -        digitalocean   Running   tcp://104.131.31.20:2376           v17.06.0-ce   
 ```
 You now have three servers with Docker installed ready to add to your swarm cluster.
 
 ## Getting comfortable with [Docker Machine](https://docs.docker.com/machine/)
 
-* Type **docker-machine env [firstname][lastname]-node01**
+* Type **docker-machine env [username]-node01**
 ```
-$ docker-machine env kevincearns-node01
+$ docker-machine env kcearns-node01
 export DOCKER_TLS_VERIFY="1"
 export DOCKER_HOST="tcp://104.131.184.6:2376"
-export DOCKER_CERT_PATH="/home/vagrant/.docker/machine/machines/kevincearns-node01"
-export DOCKER_MACHINE_NAME="kevincearns-node01"
+export DOCKER_CERT_PATH="/home/vagrant/.docker/machine/machines/kcearns-node01"
+export DOCKER_MACHINE_NAME="kcearns-node01"
 # Run this command to configure your shell: 
-# eval $(docker-machine env kevincearns-node01)
+# eval $(docker-machine env kcearns-node01)
 ```
 
 Next, run the _eval_ command output by the docker-machine. All _docker_ commands are executing on node01 now. 
@@ -88,15 +92,15 @@ If you want to get comfortable moving from node to node and back to Vagrant feel
 
 We first need the IP of node01 to initialize the cluster as it will become a manager server.
 
-* Type **docker-machine ip [firstname][lastname]-node01**
+* Type **docker-machine ip [username]-node01**
 
 We now need to change our environment to node01
 
-* Type **eval $(docker-machine env [firstname][lastname]-node01)**
+* Type **eval $(docker-machine env [username]-node01)**
 
 We'll initialize Swarm with the following command:
 
-* docker swarm init --advertise-addr $(docker-machine ip [fistname][lastname]-node01)
+* docker swarm init --advertise-addr $(docker-machine ip [username]-node01)
 
 ```
 Swarm initialized: current node (oitw4ompjab8ycb7i9vmv9hcn) is now a manager.
@@ -112,15 +116,15 @@ What's its MANAGER STATUS?
 
 We'll now add the other two nodes as workers. Replace YOUR_TOKEN and YOUR_IP with the output from the init command.
 
-* Type **docker-machine ssh [firstname][lastname]-node02 "docker swarm join --token YOUR_TOKEN YOUR_IP:2377"**
-* Type **docker-machine ssh [firstname][lastname]-node03 "docker swarm join --token YOUR_TOKEN YOUR_IP:2377"**
+* Type **docker-machine ssh [username]-node02 "docker swarm join --token YOUR_TOKEN YOUR_IP:2377"**
+* Type **docker-machine ssh [username]-node03 "docker swarm join --token YOUR_TOKEN YOUR_IP:2377"**
 
 ```
 $ docker node ls
 ID                            HOSTNAME             STATUS              AVAILABILITY        MANAGER STATUS
-oitw4ompjab8ycb7i9vmv9hcn *   kevincearns-node01   Ready               Active              Leader
-w41dma3bfpo1ny6wcdbfiv675     kevincearns-node03   Ready               Active              
-y9gcw3iqmg12igrfu8ksuxa5n     kevincearns-node02   Ready               Active  
+oitw4ompjab8ycb7i9vmv9hcn *   kcearns-node01   Ready               Active              Leader
+w41dma3bfpo1ny6wcdbfiv675     kcearns-node03   Ready               Active              
+y9gcw3iqmg12igrfu8ksuxa5n     kcearns-node02   Ready               Active  
 ```
 
 Your Swarm cluster is now ready to do something!
@@ -129,12 +133,12 @@ Your Swarm cluster is now ready to do something!
 
 We will create an nginx service that runs on port 80 and set the number of desired replicas at 3. 
 
-* Type **docker-machine ssh [firstname][lastname]-node01 "docker service create --name nginx --replicas 3 --publish 80:80 nginx"**
+* Type **docker-machine ssh [username]-node01 "docker service create --name nginx --replicas 3 --publish 80:80 nginx"**
 
 If you run the **docker service ls** command you should see the service info below:
 
 ```
-$ docker-machine ssh kevincearns-node01 "docker service ls"
+$ docker-machine ssh kcearns-node01 "docker service ls"
 ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
 thzhheud4025        nginx               replicated          3/3                 nginx:latest        *:80->80/tcp
 ```
@@ -142,7 +146,7 @@ thzhheud4025        nginx               replicated          3/3                 
 Lets try it out:
 
 ```
-$ curl http://$(docker-machine ip [firstname][lastname]-node01)
+$ curl http://$(docker-machine ip [username]-node01)
 <!DOCTYPE html>
 <html>
 <head>
