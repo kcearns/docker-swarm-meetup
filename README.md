@@ -1,4 +1,4 @@
-# Toronto July Docker Swarm Orchestration Meetup
+# Docker Swarm Orchestration Tutorial
 
 > **Note:** An installation of Vagrant is required for this tutorial. If you have not done so already please go to the [Vagrant downloads page](https://www.vagrantup.com/downloads.html) and install it. A token for Digital Ocean is also required and will be provided at the meetup.
 
@@ -93,11 +93,11 @@ If you want to get comfortable moving from node to node and back to Vagrant feel
 
 > **Note:** We will switch from using the _eval_ command to using _docker-machine ssh_ to run our commands on the remote nodes at some point during this section. Both methods are useful and interchangeable as demonstrated here but I find using docker-machine helpful in keeping me aware of which server I am running commands on.
 
-We first need the IP of node01 to initialize the cluster as it will become a manager server.
+We need the IP of node01 to initialize the cluster as it will become a manager server.
 
 * Type **docker-machine ip [username]-node01**
 
-We now need to change our environment to node01
+Now we need to change our environment to node01
 
 * Type **eval $(docker-machine env [username]-node01)**
 
